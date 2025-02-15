@@ -8,18 +8,37 @@ namespace FluxoCaixa.Lancamentos.Controllers
     [Route("api/[controller]")]
     public class LancamentosController : ControllerBase
     {
-        private readonly IAdicionarLancamento _adicionarLancamento;
+        private readonly IAdicionarLancamentoUseCase _adicionarLancamentoUseCase;
 
-        public LancamentosController(IAdicionarLancamento adicionarLancamento)
+        public LancamentosController(IAdicionarLancamentoUseCase adicionarLancamentoUseCase)
         {
-            _adicionarLancamento = adicionarLancamento;
+            _adicionarLancamentoUseCase = adicionarLancamentoUseCase;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Adicionar(LancamentoDTO lancamentoDTO)
+        /// <summary>
+        /// Adiciona um lançamento tipo Debito no banco de cados
+        /// </summary>
+        /// <param name="lancamentoDTO"></param>
+        /// <returns>lancamentoDTO</returns>
+        [HttpPost("Debito")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<IActionResult> AdicionarLancamentoDebito(LancamentoDTO lancamentoDTO)
         {
-            await _adicionarLancamento.Executar(lancamentoDTO);
-            return Ok();
+            await _adicionarLancamentoUseCase.ExecutarDebito(lancamentoDTO);
+            return Ok(lancamentoDTO);
+        }
+        
+        /// <summary>
+        /// Adiciona um lançamento tipo Credito no banco de cados
+        /// </summary>
+        /// <param name="lancamentoDTO"></param>
+        /// <returns>lancamentoDTO</returns>
+        [HttpPost("Credito")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<IActionResult> AdicionarLancamentoCredito(LancamentoDTO lancamentoDTO)
+        {
+            await _adicionarLancamentoUseCase.ExecutarCredito(lancamentoDTO);
+            return Ok(lancamentoDTO);
         }
     }
 }

@@ -1,0 +1,55 @@
+﻿services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    environment:
+      SA_PASSWORD: "@Password123"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    networks:
+      apis-network:
+        aliases:
+          - "sqlserver"
+    healthcheck:
+      test: [ "CMD", "/opt/mssql-tools/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "@Password123", "-Q", "SELECT 1" ]
+      interval: 5s
+      retries: 5
+      start_period: 10s
+    volumes:
+      - "fluxo-caixa-db:/var/opt/mssql"
+      
+  fluxocaixa.lancamentos:
+    image: fluxocaixa.lancamentos
+    build:
+      context: .
+      dockerfile: FluxoCaixa.Lancamentos/Dockerfile
+    ports:
+      - "8080:5000"
+    environment:
+      - ASPNETCORE_URLS=http://+:5000
+      - ASPNETCORE_environment=Development
+    depends_on: ["sqlserver", ""]
+    networks:
+        - apis-network
+
+  fluxocaixa.consolidado:
+    image: fluxocaixa.consolidado
+    build:
+      context: .
+      dockerfile: FluxoCaixa.Consolidado/Dockerfile
+    ports:
+      - "8081:5001"
+    environment:
+        - ASPNETCORE_URLS=http://+:5001
+        - ASPNETCORE_environment=Development
+    depends_on: ["sqlserver"]
+    networks:
+        - apis-network
+    
+volumes:
+  fluxo-caixa-db:
+    
+networks:
+  apis-network:
+    driver: bridge

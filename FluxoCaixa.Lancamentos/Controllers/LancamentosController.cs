@@ -1,10 +1,12 @@
 using FluxoCaixa.Lancamentos.Application.DTO;
 using FluxoCaixa.Lancamentos.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FluxoCaixa.Lancamentos.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/[controller]")]
     public class LancamentosController : ControllerBase
     {

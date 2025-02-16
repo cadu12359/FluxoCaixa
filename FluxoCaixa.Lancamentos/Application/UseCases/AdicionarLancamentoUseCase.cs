@@ -11,20 +11,26 @@ namespace FluxoCaixa.Lancamentos.Application.UseCases
     public class AdicionarLancamentoUseCase : IAdicionarLancamentoUseCase
     {
         private readonly ILancamentoRepository _lancamentoRepository;
+        private readonly ILogger<AdicionarLancamentoUseCase> _logger;
 
-        public AdicionarLancamentoUseCase(ILancamentoRepository lancamentoRepository)
+        public AdicionarLancamentoUseCase(ILancamentoRepository lancamentoRepository, ILogger<AdicionarLancamentoUseCase> logger)
         {
             _lancamentoRepository = lancamentoRepository;
+            _logger = logger;
         }
 
         public async Task ExecutarCredito(LancamentoDTO lancamentoDto)
         {
+            _logger.LogInformation($"Adicionando lancamento de crédito, valor: {lancamentoDto.Valor}");
+            
             var lancamento = new Lancamento(TipoLancamento.Credito, lancamentoDto.Valor);
             await _lancamentoRepository.Adicionar(lancamento);
         }
         
         public async Task ExecutarDebito(LancamentoDTO lancamentoDto)
         {
+            _logger.LogInformation($"Adicionando lancamento de débito, valor: {lancamentoDto.Valor}");
+            
             var lancamento = new Lancamento(TipoLancamento.Debito, lancamentoDto.Valor);
             await _lancamentoRepository.Adicionar(lancamento);
         }

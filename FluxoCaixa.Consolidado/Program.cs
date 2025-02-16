@@ -1,8 +1,10 @@
+using System.Reflection;
 using FluxoCaixa.Consolidado.Application.Interfaces;
 using FluxoCaixa.Consolidado.Application.UseCases;
 using FluxoCaixa.Lancamentos.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +20,20 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("consolidado", new OpenApiInfo { Title = "FluxoCaixa Consolidado", Version = "v1" });
+    c.DocInclusionPredicate((docName, apiDesc) =>
+    {
+        if (!apiDesc.TryGetMethodInfo(out MethodInfo methodInfo)) return false;
+
+        var namespacePrefix = "FluxoCaixa.Consolidado";
+        return methodInfo.DeclaringType != null && 
+               methodInfo.DeclaringType.Namespace != null &&
+               methodInfo.DeclaringType.Namespace.StartsWith(namespacePrefix);
+    });
 });
+
+builder.Logging.ClearProviders(); 
+builder.Logging.AddConsole();
+builder.Logging.AddDebug(); 
 
 var app = builder.Build();
 

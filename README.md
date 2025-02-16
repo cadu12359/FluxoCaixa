@@ -1,17 +1,17 @@
 
-# Projeto Fuxo Caixa
+# Projeto Fluxo Caixa
 
 Projeto para registrar débitos e créditos no caixa e obter o saldo atual.
 
 ## Decisões de Arquitetura 
 
-Tendo em vista que seriam duas funcionalidas, (Serviço que faça o controle de lançamentos e Serviço do consolidado diário), optei por desenvolver duas APIs, ralizando a separação de responsabilidades, e criando camadas de domínio, aplicação e infraestrutura em ambos os projetos, visando uma arquitetura escalável com auta coesão e baixo acoplamento, além da implementação de testes de unidade para garantir um código seguro e testável.
+Tendo em vista que seriam duas funcionalidades, (Serviço que faça o controle de lançamentos e Serviço do consolidado diário), optei por desenvolver duas APIs, realizando a separação de responsabilidades, e criando camadas de domínio, aplicação e infraestrutura em ambos os projetos, visando uma arquitetura escalável com auta coesão e baixo acoplamento, além da implementação de testes de unidade para garantir um código seguro e testável.
 
 
 
 ## Funcionalidades
 
-- Adiconar Lançamentos (Débito ou Crédito).
+- Adicionar Lançamentos (Débito ou Crédito).
 - Obter saldo total.
 - Cada serviço foi desenvolvido em uma API.
 ## Tecnologias Utilizadas
@@ -24,7 +24,7 @@ Tendo em vista que seriam duas funcionalidas, (Serviço que faça o controle de 
 - Docker
 - Clean Code
 - Unity Tests (XUniy, Moq)
-- Injeçao de Dependência
+- Injeção de Dependência
 
 
 ## Rodando localmente e Testando
@@ -35,7 +35,7 @@ Ter o **Docker** instalado em sua máquina.
 
 Para instalar acesse: https://www.docker.com/products/docker-desktop/
 
-Ter o SDK do .NET instaldo em sua máquina.
+Ter o SDK do .NET instalado em sua máquina.
 
 Para instalar acesse: https://dotnet.microsoft.com/pt-br/download/dotnet/9.0
 
@@ -58,13 +58,13 @@ Dentro da pasta raiz do projeto, rode o comando do Docker Compose
   docker-compose up --build
 ```
 
-Acesse a API de **Fluxo Caixa Lançamrentos** através do navegador pelo endereço
+Acesse a API de **Fluxo Caixa Lançamentos** através do navegador pelo endereço
 
 [http://localhost:8080/swagger/index.html](http://localhost:8080/swagger/index.html)
 
 - Para realizar o login, faça uma chamada no endpoint Login, com usuário **admin** e senha **1234**.
  
-- Copie o token gerado pela requisição e cole no através do botão Autorize:
+- Copie o token gerado pela requisição e cole no através do botão Authorize:
 
 ![Captura de tela 2025-02-16 110707](https://github.com/user-attachments/assets/f74af44c-ad7f-47d8-8127-fba5046509a5)
 
@@ -94,9 +94,10 @@ Acesse a pasta do projeto FluxoCaixa, abra o terminal e rode o comando
 
 - Realizar a comunicação entre os serviços através de mensageria com RabbitMQ.
 
-- Separação das camadas (atualmente em pastas) em projetos distintos, vizando a escalabilidade.
+- Separação das camadas (atualmente em pastas) em projetos distintos, visando a escalabilidade.
 
-- Aticionar autenticação e autorização utilizando JWT.
+- Adicionar autenticação e autorização utilizando JWT.
 
 - Adicionar projeto Front-end utilizando frameworks como Angular, React, Blazor.
+
 

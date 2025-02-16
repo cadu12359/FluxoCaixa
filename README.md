@@ -84,7 +84,7 @@ Acesse a API de **Fluxo Caixa Consolidado** através do navegador pelo endereço
 
 ## Rodando Testes
 
-Acesse a pasta do projeto FluxoCaixa, abra o terminal e rode o comando
+Acesse a pasta do projeto FluxoCaixa, abra outro terminal e rode o comando
 
 ```bash
   dotnet test

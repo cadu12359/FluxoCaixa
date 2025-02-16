@@ -16,16 +16,16 @@ Tendo em vista que seriam duas funcionalidades, (Serviço que faça o controle d
 - Cada serviço foi desenvolvido em uma API.
 ## Tecnologias Utilizadas
 
-- .NET 8 APIs
+- .NET 9 APIs
 - REST
 - SQL Server
 - Entity Framework
 - Migrations
 - Docker
 - Clean Code
-- Unity Tests (XUniy, Moq)
+- Unity Tests (XUniy, NSubstitute)
 - Injeção de Dependência
-
+- JWT Authentication
 
 ## Rodando localmente e Testando
 

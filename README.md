@@ -96,8 +96,4 @@ Acesse a pasta do projeto FluxoCaixa, abra o terminal e rode o comando
 
 - Separação das camadas (atualmente em pastas) em projetos distintos, visando a escalabilidade.
 
-- Adicionar autenticação e autorização utilizando JWT.
-
-- Adicionar projeto Front-end utilizando frameworks como Angular, React, Blazor.
-
-
+- Integração com projeto Front-end utilizando frameworks como Angular, React, Blazor.

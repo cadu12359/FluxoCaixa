@@ -72,6 +72,8 @@ Acesse a API de **Fluxo Caixa Lançamrentos** através do navegador pelo endere�
 
 - Realize lançamentos através dos endpoints **api/Lancamentos/Debito** e **api/Lancamentos/Credito**
 
+![lancamento_debito](https://github.com/user-attachments/assets/aebd158b-32af-4ec8-a547-be9bbadbf01c)
+
 Acesse a API de **Fluxo Caixa Consolidado** através do navegador pelo endereço
 
 [http://localhost:8081/swagger/index.html](http://localhost:8081/swagger/index.html)
